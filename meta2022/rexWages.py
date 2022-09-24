@@ -1,10 +1,9 @@
 from collections import defaultdict 
+from decimal import Decimal 
 
 name = "rexWages"
-
 input = []
-
-with open(name+"Input", 'r') as f:
+with open(name+"Input.txt", 'r') as f:
     lines = f.readlines()
     for line in lines:
         input.append(line.strip())
@@ -13,21 +12,22 @@ testCaseCount = int(input[0])
 input = input[1:]
 
 with open(name+"Result.txt", "w") as f:
-    for _ in range(testCaseCount):
+    for testCountNum in range(testCaseCount):
+        print(f"genius {testCountNum}, {testCaseCount}")
         firstLine = input[0].split(" ")
         N = int(firstLine[0])
         Q = int(firstLine[1])
 
         employees = list(map(int, input[1].split(" ")))
-        print(N, Q, employees)
+        # print(N, Q, employees)
         for line in input[2:2+Q]:
             vals = list(map(int, line.split(" ")))
-            print(vals)
+            # print(vals)
             if vals[0] == 1:
                 r = vals[-1]
                 e = vals[-2]
                 p1, p2, p3 = vals[1], vals[2], vals[3]
-                print(e, r, p1, p2, p3)
+                # print(e, r, p1, p2, p3)
                 for _ in range(r):
                     for enum in range(len(employees)):
                         currWage = employees[enum] 
@@ -45,12 +45,12 @@ with open(name+"Result.txt", "w") as f:
                             newWage = currWage + currWage * (p3/100)
                         employees[enum] = newWage 
                         if enum == e-1:
-                            print(f"{enum}: {currWage} -> {newWage}, {p1}")
-                            f.write(str(newWage)+'\n')
+                            # print(f"{enum}: {currWage} -> {newWage}, {p1}")
+                            f.write('{:.6f}\n'.format(round(newWage, 6)))
             elif vals[0] == 2:
                 e1, e2 = vals[1], vals[2]
-                f.write(str(sum(employees[e1-1:e2]))+'\n')
+                f.write('{:.6f}\n'.format(round(sum(employees[e1-1:e2]), 6)))
         
         input = input[2+Q:]
-        print()
+        # print()
 
