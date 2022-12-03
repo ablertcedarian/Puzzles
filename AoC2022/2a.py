@@ -1,4 +1,4 @@
-#AoC 2022 1.1
+#AoC 2022 2a
 pn = '2'
 import sys
 import re
