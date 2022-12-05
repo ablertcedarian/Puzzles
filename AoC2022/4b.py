@@ -26,6 +26,5 @@ for ranges in input:
     r2 = set(range(c,d+1))
     count += any(r1 & r2)
     
-
 print(count)
 
